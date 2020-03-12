@@ -8,23 +8,23 @@ import Head from "./../components/head"
 const BlogPage = () => {
   const data = useStaticQuery(graphql`
     query {
-      allContentfulBlogPost(sort: { fields: publishedDate, order: DESC }) {
+      allWordpressPost {
         edges {
           node {
             title
             slug
-            publishedDate(formatString: "MMMM Do,YYYY")
+            date
           }
         }
       }
     }
   `)
 
-  const list = data.allContentfulBlogPost.edges.map(edge => (
+  const list = data.allWordpressPost.edges.map(edge => (
     <li className={blogStyle.post}>
       <Link to={`/blog/${edge.node.slug}`}>
         <h2>{edge.node.title}</h2>
-        <p>{edge.node.publishedDate}</p>
+        <p>{edge.node.date}</p>
       </Link>
     </li>
   ))

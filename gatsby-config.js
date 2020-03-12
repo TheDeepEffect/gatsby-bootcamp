@@ -19,6 +19,23 @@ module.exports = {
         accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
       },
     },
+    {
+      resolve: "gatsby-source-wordpress",
+      options: {
+        baseUrl: "gatsbybootcamp.wordpress.com",
+        protocol: "https",
+        hostingWPCOM: true,
+        useACF: false,
+        auth: {
+          wpcom_app_clientSecret: process.env.WORDPRESS_CLIENT_SECRET,
+          wpcom_app_clientId: "68342",
+          wpcom_user: "deep.m@simformsolutions.com",
+          wpcom_pass: process.env.WORDPRESS_PASSWORD,
+        },
+        perPage: 100,
+        includedRoutes: ["**/posts"],
+      },
+    },
     "gatsby-plugin-sass",
     {
       resolve: "gatsby-source-filesystem",
